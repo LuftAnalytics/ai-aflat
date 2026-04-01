@@ -40,17 +40,23 @@ export function HeroSection() {
           <Button
             size="lg"
             className="bg-cyan text-primary-foreground hover:bg-cyan/90 glow-cyan rounded-full px-8 gap-2"
+            asChild
           >
-            <Play className="h-5 w-5" />
-            Ascultă episodul curent
+            <a href="https://open.spotify.com/show/62QsfbjV2FjS9wnxvhxpkL" target="_blank" rel="noopener noreferrer">
+              <Play className="h-5 w-5" />
+              Ascultă episodul curent
+            </a>
           </Button>
           <Button
             size="lg"
             variant="outline"
             className="border-electric-blue text-foreground hover:bg-electric-blue/10 rounded-full px-8 gap-2"
+            asChild
           >
-            <Youtube className="h-5 w-5" />
-            Urmărește pe YouTube
+            <a href="https://www.youtube.com/@aiaflatpodcast" target="_blank" rel="noopener noreferrer">
+              <Youtube className="h-5 w-5" />
+              Urmărește pe YouTube
+            </a>
           </Button>
         </div>
 

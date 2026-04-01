@@ -3,14 +3,14 @@
 import { useEffect, useRef, useState } from "react"
 
 const platforms = [
-  { name: "Spotify", icon: "spotify" },
-  { name: "Apple Podcasts", icon: "apple" },
-  { name: "YouTube", icon: "youtube" },
-  { name: "TikTok", icon: "tiktok" },
-  { name: "Facebook", icon: "facebook" },
-  { name: "LinkedIn", icon: "linkedin" },
-  { name: "Patreon", icon: "patreon" },
-  { name: "Buy Me a Coffee", icon: "coffee" },
+  { name: "Spotify", icon: "spotify", url: "https://open.spotify.com/show/62QsfbjV2FjS9wnxvhxpkL" },
+  { name: "Apple Podcasts", icon: "apple", url: "https://podcasts.apple.com/us/podcast/ai-aflat/id1877735682" },
+  { name: "YouTube", icon: "youtube", url: "https://www.youtube.com/@aiaflatpodcast" },
+  { name: "TikTok", icon: "tiktok", url: "https://www.tiktok.com/@ai_aflat_podcast" },
+  { name: "Facebook", icon: "facebook", url: "https://www.facebook.com/profile.php?id=61587939167496" },
+  { name: "LinkedIn", icon: "linkedin", url: "https://www.linkedin.com/company/111767602" },
+  { name: "Patreon", icon: "patreon", url: "https://www.patreon.com/c/AIAFLATPodcast" },
+  { name: "Buy Me a Coffee", icon: "coffee", url: "https://buymeacoffee.com/aiaflatpodcast" },
 ]
 
 function PlatformIcon({ icon }: { icon: string }) {
@@ -98,7 +98,9 @@ export function PlatformsSection() {
           {platforms.map((platform, index) => (
             <a
               key={platform.name}
-              href="#"
+              href={platform.url}
+              target="_blank"
+              rel="noopener noreferrer"
               className={`group flex flex-col items-center gap-3 p-6 rounded-xl bg-navy-light hover:bg-navy-lighter border border-border/50 hover:border-cyan/30 transition-all duration-300 hover:glow-cyan ${
                 isVisible
                   ? "opacity-100 translate-y-0"

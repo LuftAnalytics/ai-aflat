@@ -36,8 +36,11 @@ export function Navbar() {
             <Button
               size="sm"
               className="bg-cyan text-primary-foreground hover:bg-cyan/90 glow-cyan rounded-full px-5"
+              asChild
             >
-              Ascultă acum
+              <a href="https://open.spotify.com/show/62QsfbjV2FjS9wnxvhxpkL" target="_blank" rel="noopener noreferrer">
+                Ascultă acum
+              </a>
             </Button>
           </div>
 
@@ -68,8 +71,11 @@ export function Navbar() {
             <Button
               size="sm"
               className="w-full bg-cyan text-primary-foreground hover:bg-cyan/90 glow-cyan rounded-full mt-4"
+              asChild
             >
-              Ascultă acum
+              <a href="https://open.spotify.com/show/62QsfbjV2FjS9wnxvhxpkL" target="_blank" rel="noopener noreferrer">
+                Ascultă acum
+              </a>
             </Button>
           </div>
         </div>
