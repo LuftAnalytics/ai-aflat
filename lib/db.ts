@@ -25,3 +25,17 @@ export async function getLatestEpisodes(limit = 3): Promise<Episode[]> {
   `;
   return rows;
 }
+
+export async function getCommunityStats() {
+  const { rows } = await sql<{ total: number }>`
+    SELECT COALESCE(SUM(subscribers), 0) as total FROM platform_stats
+  `;
+  const { rows: emailRows } = await sql<{ count: number }>`
+    SELECT COUNT(*) as count FROM subscribers WHERE active = true
+  `;
+  return {
+    platformTotal: Number(rows[0].total),
+    emailSubscribers: Number(emailRows[0].count),
+    grandTotal: Number(rows[0].total) + Number(emailRows[0].count),
+  };
+}

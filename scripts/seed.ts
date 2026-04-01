@@ -30,6 +30,36 @@ async function seed() {
 
   console.log("Created subscribers table");
 
+  // Create platform_stats table
+  await sql`
+    CREATE TABLE IF NOT EXISTS platform_stats (
+      id SERIAL PRIMARY KEY,
+      platform TEXT NOT NULL UNIQUE,
+      subscribers INTEGER NOT NULL DEFAULT 0,
+      updated_at TIMESTAMP DEFAULT NOW()
+    )
+  `;
+
+  const stats = [
+    { platform: "youtube", subscribers: 45 },
+    { platform: "tiktok", subscribers: 17 },
+    { platform: "facebook", subscribers: 85 },
+    { platform: "linkedin", subscribers: 28 },
+    { platform: "buymeacoffee", subscribers: 1 },
+  ];
+
+  for (const s of stats) {
+    await sql`
+      INSERT INTO platform_stats (platform, subscribers)
+      VALUES (${s.platform}, ${s.subscribers})
+      ON CONFLICT (platform) DO UPDATE SET
+        subscribers = EXCLUDED.subscribers,
+        updated_at = NOW()
+    `;
+  }
+
+  console.log("Created and seeded platform_stats table");
+
   // Seed with existing episodes
   const episodes = [
     {
