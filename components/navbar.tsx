@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { LogoWithText } from "./logo"
 import { Button } from "@/components/ui/button"
-import { Menu, X } from "lucide-react"
+import { Menu, X, Heart } from "lucide-react"
 
 const navLinks = [
   { href: "#episoade", label: "Episoade" },
@@ -33,6 +33,15 @@ export function Navbar() {
                 {link.label}
               </a>
             ))}
+            <a
+              href="https://buymeacoffee.com/aiaflatpodcast"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-1.5 text-sm font-semibold text-[#FFDD00] hover:text-[#FFDD00]/80 transition-colors"
+            >
+              <Heart className="h-4 w-4" />
+              Susține
+            </a>
             <Button
               size="sm"
               className="bg-cyan text-primary-foreground hover:bg-cyan/90 glow-cyan rounded-full px-5"
@@ -68,6 +77,16 @@ export function Navbar() {
                 {link.label}
               </a>
             ))}
+            <a
+              href="https://buymeacoffee.com/aiaflatpodcast"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 py-2 text-sm font-semibold text-[#FFDD00] hover:text-[#FFDD00]/80 transition-colors"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              <Heart className="h-4 w-4" />
+              Susține AI AFLAT
+            </a>
             <Button
               size="sm"
               className="w-full bg-cyan text-primary-foreground hover:bg-cyan/90 glow-cyan rounded-full mt-4"
