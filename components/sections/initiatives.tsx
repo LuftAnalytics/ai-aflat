@@ -10,6 +10,32 @@ export function InitiativesSection() {
   const sectionRef = useRef<HTMLElement>(null)
   const [isVisible, setIsVisible] = useState(false)
   const [email, setEmail] = useState("")
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle")
+  const [message, setMessage] = useState("")
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault()
+    setStatus("loading")
+    try {
+      const res = await fetch("/api/subscribe", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      })
+      if (res.ok) {
+        setStatus("success")
+        setMessage("Gata! Te anuntam la lansare.")
+        setEmail("")
+      } else {
+        const data = await res.json()
+        setStatus("error")
+        setMessage(data.error || "Ceva nu a mers.")
+      }
+    } catch {
+      setStatus("error")
+      setMessage("Ceva nu a mers. Incearca din nou.")
+    }
+  }
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -73,18 +99,32 @@ export function InitiativesSection() {
               Un director curatorizat de servere MCP testate și relevante pentru business-ul românesc. Găsește unealta potrivită fără să pierzi ore în cercetare.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-3">
-              <Input
-                type="email"
-                placeholder="email@exemplu.ro"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="bg-navy-lighter border-border/50 focus:border-cyan text-foreground placeholder:text-muted-foreground"
-              />
-              <Button className="bg-cyan text-primary-foreground hover:bg-cyan/90 whitespace-nowrap">
-                Notifică-mă la lansare
-              </Button>
-            </div>
+            {status === "success" ? (
+              <div className="p-3 rounded-xl bg-cyan/10 border border-cyan/30 text-cyan font-medium text-sm">
+                {message}
+              </div>
+            ) : (
+              <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3">
+                <Input
+                  type="email"
+                  placeholder="email@exemplu.ro"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                  className="bg-navy-lighter border-border/50 focus:border-cyan text-foreground placeholder:text-muted-foreground"
+                />
+                <Button
+                  type="submit"
+                  disabled={status === "loading"}
+                  className="bg-cyan text-primary-foreground hover:bg-cyan/90 whitespace-nowrap"
+                >
+                  {status === "loading" ? "..." : "Notifica-ma la lansare"}
+                </Button>
+              </form>
+            )}
+            {status === "error" && (
+              <p className="mt-2 text-sm text-red-400">{message}</p>
+            )}
           </div>
 
           {/* Community Card */}
@@ -108,8 +148,11 @@ export function InitiativesSection() {
             <Button
               variant="outline"
               className="border-electric-blue text-foreground hover:bg-electric-blue/10"
+              asChild
             >
-              Intră în comunitate
+              <a href="https://www.linkedin.com/company/111767602" target="_blank" rel="noopener noreferrer">
+                Intra in comunitate
+              </a>
             </Button>
           </div>
         </div>
