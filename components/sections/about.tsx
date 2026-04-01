@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
+import Image from "next/image"
 
 export function AboutSection() {
   const sectionRef = useRef<HTMLElement>(null)
@@ -37,10 +38,17 @@ export function AboutSection() {
               isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8"
             }`}
           >
-            <div className="relative aspect-square max-w-md mx-auto">
+            <div className="relative aspect-[3/4] max-w-md mx-auto">
               <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-cyan/20 to-electric-blue/20 blur-xl" />
-              <div className="relative rounded-2xl border-2 border-cyan/30 bg-navy-light overflow-hidden aspect-square flex items-center justify-center">
-                <div className="text-6xl font-serif font-bold text-cyan/20">A</div>
+              <div className="relative rounded-2xl border-2 border-cyan/30 overflow-hidden aspect-[3/4]">
+                <Image
+                  src="/razvan.jpg"
+                  alt="Răzvan Zlăvog"
+                  fill
+                  className="object-cover object-top"
+                  sizes="(max-width: 1024px) 100vw, 448px"
+                  priority
+                />
               </div>
             </div>
           </div>
