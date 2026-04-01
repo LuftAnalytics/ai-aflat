@@ -36,10 +36,10 @@ export function SupportSection() {
           }`}
         >
           <h2 className="font-serif text-2xl sm:text-3xl font-bold text-foreground mb-3">
-            Sustine AI AFLAT
+            Susține AI AFLAT
           </h2>
           <p className="text-muted-foreground mb-8">
-            Daca ti se pare util ce facem, poti sustine proiectul aici.
+            Dacă ți se pare util ce facem, poți susține proiectul aici.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">

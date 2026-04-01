@@ -24,7 +24,7 @@ export function InitiativesSection() {
       })
       if (res.ok) {
         setStatus("success")
-        setMessage("Gata! Te anuntam la lansare.")
+        setMessage("Gata! Te anunțăm la lansare.")
         setEmail("")
       } else {
         const data = await res.json()
@@ -33,7 +33,7 @@ export function InitiativesSection() {
       }
     } catch {
       setStatus("error")
-      setMessage("Ceva nu a mers. Incearca din nou.")
+      setMessage("Ceva nu a mers. Încearcă din nou.")
     }
   }
 
@@ -118,7 +118,7 @@ export function InitiativesSection() {
                   disabled={status === "loading"}
                   className="bg-cyan text-primary-foreground hover:bg-cyan/90 whitespace-nowrap"
                 >
-                  {status === "loading" ? "..." : "Notifica-ma la lansare"}
+                  {status === "loading" ? "..." : "Notifică-mă la lansare"}
                 </Button>
               </form>
             )}
@@ -151,7 +151,7 @@ export function InitiativesSection() {
               asChild
             >
               <a href="https://www.linkedin.com/company/111767602" target="_blank" rel="noopener noreferrer">
-                Intra in comunitate
+                Intră în comunitate
               </a>
             </Button>
           </div>

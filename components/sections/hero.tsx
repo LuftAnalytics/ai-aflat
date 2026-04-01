@@ -19,13 +19,13 @@ export function HeroSection({ communityCount, episodeCount }: { communityCount: 
             variant="outline"
             className="mb-6 border-cyan/50 text-cyan bg-cyan/10 px-4 py-1.5 text-sm font-medium"
           >
-            EPISOD NOU IN FIECARE SAPTAMANA
+            EPISOD NOU ÎN FIECARE SĂPTĂMÂNĂ
           </Badge>
         </div>
 
         <h1 className="opacity-0 animate-fade-in-up animation-delay-100">
           <span className="block font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-foreground leading-tight">
-            AI-ul se misca rapid.
+            AI-ul se mișcă rapid.
           </span>
           <span className="block font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-foreground leading-tight italic mt-2">
             Povestim despre asta.
@@ -33,7 +33,7 @@ export function HeroSection({ communityCount, episodeCount }: { communityCount: 
         </h1>
 
         <p className="mt-8 text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed opacity-0 animate-fade-in-up animation-delay-200">
-          Daca AI AFLAT deja, ajuta-i si pe altii sa afle.
+          Dacă AI AFLAT deja, ajută-i și pe alții să afle.
         </p>
 
         <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 opacity-0 animate-fade-in-up animation-delay-300">
@@ -44,7 +44,7 @@ export function HeroSection({ communityCount, episodeCount }: { communityCount: 
           >
             <a href="https://open.spotify.com/show/62QsfbjV2FjS9wnxvhxpkL" target="_blank" rel="noopener noreferrer">
               <Play className="h-5 w-5" />
-              Asculta episodul curent
+              Ascultă episodul curent
             </a>
           </Button>
           <Button
@@ -55,7 +55,7 @@ export function HeroSection({ communityCount, episodeCount }: { communityCount: 
           >
             <a href="https://www.youtube.com/@aiaflatpodcast" target="_blank" rel="noopener noreferrer">
               <Youtube className="h-5 w-5" />
-              Urmareste pe YouTube
+              Urmărește pe YouTube
             </a>
           </Button>
         </div>
@@ -67,7 +67,7 @@ export function HeroSection({ communityCount, episodeCount }: { communityCount: 
           </div>
           <div className="text-center">
             <div className="font-serif text-3xl sm:text-4xl font-bold text-cyan">{communityCount}+</div>
-            <div className="text-sm text-muted-foreground mt-1">in comunitate</div>
+            <div className="text-sm text-muted-foreground mt-1">în comunitate</div>
           </div>
           <div className="text-center">
             <div className="font-serif text-3xl sm:text-4xl font-bold text-cyan">100%</div>

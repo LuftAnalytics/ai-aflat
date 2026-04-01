@@ -107,7 +107,7 @@ export function ContactSection() {
 
       if (res.ok) {
         setStatus("success")
-        setMessage("Gata! Te anuntam cand apare episodul nou.")
+        setMessage("Gata! Te anunțăm când apare episodul nou.")
         setEmail("")
       } else {
         const data = await res.json()
@@ -116,7 +116,7 @@ export function ContactSection() {
       }
     } catch {
       setStatus("error")
-      setMessage("Ceva nu a mers. Incearca din nou.")
+      setMessage("Ceva nu a mers. Încearcă din nou.")
     }
   }
 
@@ -133,11 +133,11 @@ export function ContactSection() {
           }`}
         >
           <h2 className="font-serif text-3xl sm:text-4xl font-bold text-foreground mb-4">
-            Fii la curent
+            Fii la curent!
           </h2>
 
           <p className="text-muted-foreground max-w-2xl mx-auto mb-8">
-            Lasa-ti emailul si te anuntam cand apare un episod nou.
+            Lasă-ți emailul și te anunțăm când apare un episod nou.
           </p>
         </div>
 
@@ -166,7 +166,7 @@ export function ContactSection() {
                 disabled={status === "loading"}
                 className="bg-cyan text-primary-foreground hover:bg-cyan/90 glow-cyan rounded-full px-6 shrink-0"
               >
-                {status === "loading" ? "..." : "Aboneaza-te"}
+                {status === "loading" ? "..." : "Abonează-te"}
               </Button>
             </form>
           )}
@@ -182,7 +182,7 @@ export function ContactSection() {
           }`}
         >
           <p className="text-sm text-muted-foreground mb-6">
-            Sau gaseste-ne pe
+            Sau găsește-ne pe
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             {socialLinks.map((link, index) => (

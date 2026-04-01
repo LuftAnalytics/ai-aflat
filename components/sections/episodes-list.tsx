@@ -71,7 +71,7 @@ export function EpisodesList({ episodes }: { episodes: EpisodeData[] }) {
             Episoade recente
           </h2>
           <p className="mt-4 text-muted-foreground max-w-2xl mx-auto">
-            Ce s-a intamplat in AI. Ce conteaza pentru business.
+            Ce s-a întâmplat în AI. Ce contează pentru business.
           </p>
         </div>
 
@@ -130,12 +130,12 @@ export function EpisodesList({ episodes }: { episodes: EpisodeData[] }) {
                       rel="noopener noreferrer"
                       className="flex items-center gap-1 text-cyan text-sm font-medium hover:gap-2 transition-all"
                     >
-                      Asculta
+                      Ascultă
                       <ArrowRight className="h-4 w-4" />
                     </a>
                   ) : (
                     <span className="flex items-center gap-1 text-cyan/50 text-sm font-medium">
-                      In curand
+                      În curând
                       <ArrowRight className="h-4 w-4" />
                     </span>
                   )}
