@@ -18,6 +18,18 @@ async function seed() {
 
   console.log("Created episodes table");
 
+  // Create subscribers table
+  await sql`
+    CREATE TABLE IF NOT EXISTS subscribers (
+      id SERIAL PRIMARY KEY,
+      email TEXT NOT NULL UNIQUE,
+      subscribed_at TIMESTAMP DEFAULT NOW(),
+      active BOOLEAN DEFAULT TRUE
+    )
+  `;
+
+  console.log("Created subscribers table");
+
   // Seed with existing episodes
   const episodes = [
     {

@@ -1,6 +1,8 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
 
 const socialLinks = [
   {
@@ -71,6 +73,9 @@ const socialLinks = [
 export function ContactSection() {
   const sectionRef = useRef<HTMLElement>(null)
   const [isVisible, setIsVisible] = useState(false)
+  const [email, setEmail] = useState("")
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle")
+  const [message, setMessage] = useState("")
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -89,6 +94,32 @@ export function ContactSection() {
     return () => observer.disconnect()
   }, [])
 
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault()
+    setStatus("loading")
+
+    try {
+      const res = await fetch("/api/subscribe", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      })
+
+      if (res.ok) {
+        setStatus("success")
+        setMessage("Gata! Te anuntam cand apare episodul nou.")
+        setEmail("")
+      } else {
+        const data = await res.json()
+        setStatus("error")
+        setMessage(data.error || "Ceva nu a mers.")
+      }
+    } catch {
+      setStatus("error")
+      setMessage("Ceva nu a mers. Incearca din nou.")
+    }
+  }
+
   return (
     <section
       ref={sectionRef}
@@ -102,45 +133,72 @@ export function ContactSection() {
           }`}
         >
           <h2 className="font-serif text-3xl sm:text-4xl font-bold text-foreground mb-4">
-            Hai să vorbim
+            Fii la curent
           </h2>
 
-          <p className="text-muted-foreground max-w-2xl mx-auto mb-12">
-            Pentru colaborări, parteneriate, sugestii de subiecte sau dacă vrei să fii invitat în podcast.
+          <p className="text-muted-foreground max-w-2xl mx-auto mb-8">
+            Lasa-ti emailul si te anuntam cand apare un episod nou.
           </p>
         </div>
 
+        {/* Subscribe form */}
         <div
-          className={`flex flex-wrap justify-center gap-4 mb-12 transition-all duration-700 delay-100 ${
+          className={`max-w-md mx-auto mb-16 transition-all duration-700 delay-100 ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
-          {socialLinks.map((link, index) => (
-            <a
-              key={link.name}
-              href={link.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-4 rounded-xl bg-navy-light hover:bg-navy-lighter border border-border/50 hover:border-cyan/30 text-muted-foreground hover:text-cyan transition-all duration-300 hover:glow-cyan"
-              style={{ transitionDelay: `${index * 50}ms` }}
-              title={link.name}
-            >
-              {link.icon}
-            </a>
-          ))}
+          {status === "success" ? (
+            <div className="p-4 rounded-xl bg-cyan/10 border border-cyan/30 text-cyan font-medium">
+              {message}
+            </div>
+          ) : (
+            <form onSubmit={handleSubmit} className="flex gap-3">
+              <Input
+                type="email"
+                placeholder="adresa@email.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                className="flex-1 bg-navy-light border-border/50 focus:border-cyan/50"
+              />
+              <Button
+                type="submit"
+                disabled={status === "loading"}
+                className="bg-cyan text-primary-foreground hover:bg-cyan/90 glow-cyan rounded-full px-6 shrink-0"
+              >
+                {status === "loading" ? "..." : "Aboneaza-te"}
+              </Button>
+            </form>
+          )}
+          {status === "error" && (
+            <p className="mt-2 text-sm text-red-400">{message}</p>
+          )}
         </div>
 
+        {/* Social links */}
         <div
           className={`transition-all duration-700 delay-200 ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
-          <a
-            href="mailto:contact@aiaflat.ro"
-            className="inline-block font-mono text-cyan hover:text-cyan/80 transition-colors text-lg"
-          >
-            contact@aiaflat.ro
-          </a>
+          <p className="text-sm text-muted-foreground mb-6">
+            Sau gaseste-ne pe
+          </p>
+          <div className="flex flex-wrap justify-center gap-4">
+            {socialLinks.map((link, index) => (
+              <a
+                key={link.name}
+                href={link.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-4 rounded-xl bg-navy-light hover:bg-navy-lighter border border-border/50 hover:border-cyan/30 text-muted-foreground hover:text-cyan transition-all duration-300 hover:glow-cyan"
+                style={{ transitionDelay: `${index * 50}ms` }}
+                title={link.name}
+              >
+                {link.icon}
+              </a>
+            ))}
+          </div>
         </div>
       </div>
     </section>
