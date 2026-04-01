@@ -7,6 +7,10 @@ import { InitiativesSection } from "@/components/sections/initiatives"
 import { ContactSection } from "@/components/sections/contact"
 import { Footer } from "@/components/footer"
 
+import { Suspense } from "react"
+
+export const dynamic = "force-dynamic"
+
 export default function Home() {
   return (
     <>
@@ -14,7 +18,9 @@ export default function Home() {
       <main>
         <HeroSection />
         <AboutSection />
-        <EpisodesSection />
+        <Suspense fallback={<div className="py-24 sm:py-32 bg-navy-light" />}>
+          <EpisodesSection />
+        </Suspense>
         <PlatformsSection />
         <InitiativesSection />
         <ContactSection />
