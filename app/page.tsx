@@ -5,6 +5,7 @@ import { EpisodesSection } from "@/components/sections/episodes"
 import { PlatformsSection } from "@/components/sections/platforms"
 import { InitiativesSection } from "@/components/sections/initiatives"
 import { ContactSection } from "@/components/sections/contact"
+import { SupportSection } from "@/components/sections/support"
 import { Footer } from "@/components/footer"
 import { getCommunityStats, getEpisodes } from "@/lib/db"
 
@@ -30,6 +31,7 @@ export default async function Home() {
         <PlatformsSection />
         <InitiativesSection />
         <ContactSection />
+        <SupportSection />
       </main>
       <Footer />
     </>
