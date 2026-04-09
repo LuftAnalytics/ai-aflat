@@ -77,7 +77,7 @@ export function AboutSection() {
 
             <div className="mt-10 p-6 rounded-xl bg-navy-lighter border-l-4 border-cyan">
               <p className="text-foreground font-medium italic">
-                &ldquo;Vreau un mediu de business românesc mai informat — în care să beneficiem unii de pe urma cunoașterii celuilalt.&rdquo;
+                &ldquo;Vreau un mediu de business românesc cât mai bine informat — inevitabil asta înseamnă să beneficiem unii de pe urma cunoașterii celorlalți.&rdquo;
               </p>
             </div>
           </div>
