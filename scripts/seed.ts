@@ -41,10 +41,11 @@ async function seed() {
   `;
 
   const stats = [
-    { platform: "youtube", subscribers: 45 },
+    { platform: "youtube", subscribers: 55 },
     { platform: "tiktok", subscribers: 17 },
-    { platform: "facebook", subscribers: 85 },
+    { platform: "facebook", subscribers: 150 },
     { platform: "linkedin", subscribers: 28 },
+    { platform: "instagram", subscribers: 80 },
     { platform: "buymeacoffee", subscribers: 1 },
   ];
 
@@ -63,13 +64,22 @@ async function seed() {
   // Seed with existing episodes
   const episodes = [
     {
-      number: 6,
-      title: "Modelele care schimbă regulile",
+      number: 7,
+      title: "România pe un onorabil loc ultim",
       description:
-        "Ce aduce nou GPT-4.5, Claude 3.5 și ce înseamnă pentru business",
+        "Unde se află România în cursa globală AI și ce putem face",
       spotify_url: null,
       apple_url: null,
-      youtube_url: null,
+      youtube_url: "https://www.youtube.com/watch?v=QEi3dtOdKho",
+    },
+    {
+      number: 6,
+      title: "S-a atins sau nu Artificial General Intelligence?",
+      description:
+        "Dezbaterea despre AGI — unde suntem cu adevărat și ce înseamnă pentru viitor",
+      spotify_url: null,
+      apple_url: null,
+      youtube_url: "https://www.youtube.com/watch?v=zdGaHDU8vew",
     },
     {
       number: 5,

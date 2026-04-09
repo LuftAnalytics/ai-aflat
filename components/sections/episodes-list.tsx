@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react"
 import { Badge } from "@/components/ui/badge"
-import { ArrowRight } from "lucide-react"
+import { ArrowRight, Heart } from "lucide-react"
 
 interface EpisodeData {
   number: number
@@ -34,6 +34,44 @@ function PlatformIcon({ platform }: { platform: string }) {
   return icons[platform] || null
 }
 
+function LikeButton({ episodeNumber }: { episodeNumber: number }) {
+  const storageKey = `liked-ep-${episodeNumber}`
+  const [liked, setLiked] = useState(false)
+
+  useEffect(() => {
+    setLiked(localStorage.getItem(storageKey) === "true")
+  }, [storageKey])
+
+  const toggle = () => {
+    const next = !liked
+    setLiked(next)
+    if (next) {
+      localStorage.setItem(storageKey, "true")
+    } else {
+      localStorage.removeItem(storageKey)
+    }
+  }
+
+  return (
+    <button
+      onClick={toggle}
+      className="mt-4 flex items-center gap-1.5 text-sm text-muted-foreground hover:text-red-400 transition-colors group/like"
+      aria-label={liked ? "Retrage like" : "Dă like"}
+    >
+      <Heart
+        className={`h-4 w-4 transition-all ${
+          liked
+            ? "fill-red-400 text-red-400 scale-110"
+            : "group-hover/like:scale-110"
+        }`}
+      />
+      <span className={liked ? "text-red-400" : ""}>
+        {liked ? "Îți place" : "Îmi place"}
+      </span>
+    </button>
+  )
+}
+
 export function EpisodesList({ episodes }: { episodes: EpisodeData[] }) {
   const sectionRef = useRef<HTMLElement>(null)
   const [isVisible, setIsVisible] = useState(false)
@@ -55,6 +93,12 @@ export function EpisodesList({ episodes }: { episodes: EpisodeData[] }) {
     return () => observer.disconnect()
   }, [])
 
+  // Extract YouTube video ID from the latest episode
+  const latestYoutubeUrl = episodes[0]?.youtube_url
+  const latestVideoId = latestYoutubeUrl
+    ? new URL(latestYoutubeUrl).searchParams.get("v")
+    : null
+
   return (
     <section
       ref={sectionRef}
@@ -74,6 +118,29 @@ export function EpisodesList({ episodes }: { episodes: EpisodeData[] }) {
             Ce s-a întâmplat în AI. Ce contează pentru business.
           </p>
         </div>
+
+        {latestVideoId && (
+          <div
+            className={`mb-12 transition-all duration-700 ${
+              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+            }`}
+          >
+            <div className="max-w-3xl mx-auto">
+              <h3 className="font-serif text-xl sm:text-2xl font-semibold text-foreground mb-4 text-center">
+                ▶ Ultimul episod: <span className="text-cyan">{episodes[0]?.title}</span>
+              </h3>
+              <div className="relative w-full overflow-hidden rounded-xl border border-border/50" style={{ paddingBottom: "56.25%" }}>
+                <iframe
+                  className="absolute inset-0 w-full h-full"
+                  src={`https://www.youtube.com/embed/${latestVideoId}`}
+                  title={episodes[0]?.title}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              </div>
+            </div>
+          </div>
+        )}
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {episodes.map((episode, index) => {
@@ -140,6 +207,8 @@ export function EpisodesList({ episodes }: { episodes: EpisodeData[] }) {
                     </span>
                   )}
                 </div>
+
+                <LikeButton episodeNumber={episode.number} />
               </article>
             )
           })}
