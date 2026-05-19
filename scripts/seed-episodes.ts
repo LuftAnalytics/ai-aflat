@@ -6,6 +6,14 @@ async function seedEpisodes() {
 
   const episodes = [
     {
+      number: 11,
+      title: "Două la Primărie - ChatGPT și Claude",
+      description: "Un test practic: ChatGPT și Claude puși față în față pe o sarcină reală",
+      spotify_url: "https://open.spotify.com/show/62QsfbjV2FjS9wnxvhxpkL",
+      apple_url: "https://podcasts.apple.com/us/podcast/ai-aflat/id1877735682",
+      youtube_url: "https://www.youtube.com/@aiaflatpodcast",
+    },
+    {
       number: 10,
       title: "Ar fi trebuit ChatGPT să fie o operă de caritate?!",
       description: "O discuție despre modelul de business al OpenAI și ce înseamnă pentru viitorul AI",
@@ -103,7 +111,7 @@ async function seedEpisodes() {
     console.log(`Seeded episode ${ep.number}: ${ep.title}`);
   }
 
-  console.log("Done! 10 episodes + 1 pilot seeded.");
+  console.log("Done! 11 episodes + 1 pilot seeded.");
 }
 
 seedEpisodes().catch(console.error);

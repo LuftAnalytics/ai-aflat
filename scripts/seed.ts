@@ -41,7 +41,7 @@ async function seed() {
   `;
 
   const stats = [
-    { platform: "youtube", subscribers: 55 },
+    { platform: "youtube", subscribers: 80 },
     { platform: "tiktok", subscribers: 17 },
     { platform: "facebook", subscribers: 150 },
     { platform: "linkedin", subscribers: 28 },

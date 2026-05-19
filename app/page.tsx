@@ -23,7 +23,7 @@ export default async function Home() {
     <>
       <Navbar />
       <main>
-        <HeroSection communityCount={stats.grandTotal} episodeCount={episodes.length} />
+        <HeroSection communityCount={stats.grandTotal} episodeCount={episodes.filter((e) => e.number >= 1).length} />
         <AboutSection />
         <Suspense fallback={<div className="py-24 sm:py-32 bg-navy-light" />}>
           <EpisodesSection />
