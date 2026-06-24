@@ -1,11 +1,16 @@
 import { LogoWithText } from "./logo"
 
 const navLinks = [
-  { href: "#episoade", label: "Episoade" },
-  { href: "#despre", label: "Despre" },
-  { href: "#initiative", label: "Inițiative" },
-  { href: "#mcp", label: "MCP Marketplace" },
-  { href: "#contact", label: "Contact" },
+  { href: "/#episoade", label: "Episoade" },
+  { href: "/#despre", label: "Despre" },
+  { href: "/#initiative", label: "Inițiative" },
+  { href: "/#mcp", label: "MCP Marketplace" },
+  { href: "/#contact", label: "Contact" },
+]
+
+const legalLinks = [
+  { href: "/privacy", label: "Privacy" },
+  { href: "/terms", label: "Terms" },
 ]
 
 export function Footer() {
@@ -33,10 +38,21 @@ export function Footer() {
           </nav>
         </div>
 
-        <div className="mt-12 pt-8 border-t border-border/50 text-center">
+        <div className="mt-12 pt-8 border-t border-border/50 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
           <p className="text-sm text-muted-foreground">
             © 2026 AI AFLAT · Muzică: Transmission X by Mehul Choudhary (CC BY 3.0)
           </p>
+          <nav className="flex items-center gap-4">
+            {legalLinks.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+              >
+                {link.label}
+              </a>
+            ))}
+          </nav>
         </div>
       </div>
     </footer>

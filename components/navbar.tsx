@@ -6,11 +6,11 @@ import { Button } from "@/components/ui/button"
 import { Menu, X, Heart } from "lucide-react"
 
 const navLinks = [
-  { href: "#episoade", label: "Episoade" },
-  { href: "#despre", label: "Despre" },
-  { href: "#initiative", label: "Inițiative" },
-  { href: "#mcp", label: "MCP Marketplace" },
-  { href: "#contact", label: "Contact" },
+  { href: "/#episoade", label: "Episoade" },
+  { href: "/#despre", label: "Despre" },
+  { href: "/#initiative", label: "Inițiative" },
+  { href: "/#mcp", label: "MCP Marketplace" },
+  { href: "/#contact", label: "Contact" },
 ]
 
 export function Navbar() {
